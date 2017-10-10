@@ -1,0 +1,3 @@
+# hostinfo
+
+Simple Go microservice which returns a host info string. Accessible via curl or wget. Listens on port 9898 by default, if an int is passed on the command line that port is used.
