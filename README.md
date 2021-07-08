@@ -39,7 +39,11 @@ To curl a k8s service backed by hostinfo instances:
 $ kubectl run planetmongo --image rxmllc/hostinfo --port 9898 --replicas=2
 
 $ kubectl expose deployment planetmongo --port 80 --target-port 9898
+```
 
+Now from another pod:
+
+```
 $ curl planetmongo.default.svc.cluster.local
 planetmongo-6467c55955-kw324 10.90.11.42
 
