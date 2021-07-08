@@ -41,8 +41,8 @@ $ kubectl run planetmongo --image rxmllc/hostinfo --port 9898 --replicas=2
 $ kubectl expose deployment planetmongo --port 80 --target-port 9898
 
 $ curl planetmongo.default.svc.cluster.local
-Ming-The-Merciless 10.90.11.42
+planetmongo-6467c55955-kw324 10.90.11.42
 
 $ curl planetmongo.default.svc.cluster.local
-Doctor-Zarko 10.90.11.43
+planetmongo-6467c55955-zl8l2 10.90.11.43
 ```
