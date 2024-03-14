@@ -1,6 +1,9 @@
 # hostinfo
 
-Simple Go microservice which returns a host info string. Accessible via curl, wget, etc.. Listens on port 9898 by default, if an int is passed on the command line that port is used. Particularly useful when demonstrating k8s service routing mesh operation (deploy several replicas of these, create a service for them then curl the service sequentially to see various hosts engaged).
+Simple Go (or Python in the `/python` dir) microservice which returns a host info string. Accessible via curl, wget,
+etc. Listens on port 9898 by default, if an `int` is passed on the command line, that port is used instead. Particularly
+useful when demonstrating K8s service routing mesh operation (deploy several replicas of these, create a service for
+them then curl the service sequentially to see various hosts engaged).
 
 
 ## Server Examples
@@ -36,17 +39,17 @@ Doctor-Zarko 10.90.11.43
 To curl a k8s service backed by hostinfo instances:
 
 ```
-$ kubectl run planetmongo --image rxmllc/hostinfo --port 9898 --replicas=2
+$ kubectl run planetmongo --image rxmllc/hostinfo --port 9898
 
-$ kubectl expose deployment planetmongo --port 80 --target-port 9898
+$ kubectl expose pod planetmongo --port 80 --target-port 9898
 ```
 
 Now from another pod:
 
 ```
-$ curl planetmongo.default.svc.cluster.local
-planetmongo-6467c55955-kw324 10.90.11.42
+$ kubectl run -it --rm client rxmllc/tools 
 
 $ curl planetmongo.default.svc.cluster.local
-planetmongo-6467c55955-zl8l2 10.90.11.43
+
+planetmongo 10.90.11.42
 ```
