@@ -1,5 +1,5 @@
 # Build the host-info binary with no dependencies
-FROM golang:1.14.6-alpine3.12 as hi-build
+FROM golang:1.22-alpine as hi-build
 WORKDIR /go/src/app
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo hi.go
