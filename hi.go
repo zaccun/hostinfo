@@ -31,6 +31,14 @@ func main() {
 	}
 	//Register handler
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		ClientAddress := r.Header.Get("X-Real-Ip")
+		if ClientAddress == "" {
+			ClientAddress = r.Header.Get("X-Forwarded-For")
+		}
+		if ClientAddress == "" {
+			ClientAddress = r.RemoteAddr
+		}
+		log.Println("Request from " + ClientAddress)
 		w.Write([]byte(hostname + " " + localAddr.IP.String() + "\n"))
 	})
 	//Serve
