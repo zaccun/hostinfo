@@ -18,12 +18,12 @@ Make sure you provide DockerHub credentials to your container engine with the `l
 - `sudo docker login': sudo docker login docker.io -u #<your username>`
 - Install Buildx: `sudo apt install -y docker-buildx-plugin`
 - Init Buildx: `sudo docker buildx create --use`
-- Build multiarch: `sudo docker buildx build --no-cache --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t docker.io/rxmllc/hostinfo:v1-python --push .`
+- Build multiarch: `sudo docker buildx build --sbom=true --provenance=true --no-cache --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t docker.io/rxmllc/hostinfo:v1-python --push .`
   - If you intend to use `docker.io`, make sure you did the `docker login` command with `docker.io` as the target registry
 
 An alternative Dockerfile is available if you prefer to install `python` in a bare Alpine container to further reduce bloat (and exclude things like `pip`). 
 
-To build the alternative Dockerfile, invoke it during your build: `sudo docker buildx build -f Dockerfile-alpine --no-cache --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t docker.io/rxmllc/hostinfo:v1-python --push .`
+To build the alternative Dockerfile, invoke it during your build: `sudo docker buildx build -f Dockerfile-alpine --sbom=true --provenance=true --no-cache --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t docker.io/rxmllc/hostinfo:python-alpine --push .`
 
 
 ### Podman
