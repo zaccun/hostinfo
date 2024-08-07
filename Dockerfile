@@ -8,6 +8,10 @@ RUN chown 1000:1000 /go/src/app/hi ; chmod 500 /go/src/app/hi
 # Package the binary in its own isolated container
 FROM scratch
 COPY --from=hi-build /go/src/app/hi /hi
+LABEL org.opencontainers.image.ref.name=hostinfo
+LABEL org.opencontainers.image.version=1.0.0
+LABEL org.opencontainers.image.authors=rx-m
+LABEL org.opencontainers.image.url=https://rx-m.com
 USER 1000:1000
 EXPOSE 9898
 ENTRYPOINT [ "/hi" ]
