@@ -1,9 +1,13 @@
 # hostinfo
 
-Simple Go (or Python in the `/python` dir) microservice which returns a host info string. Accessible via curl, wget,
-etc. Listens on port 9898 by default, if an `int` is passed on the command line, that port is used instead. Particularly
-useful when demonstrating K8s service routing mesh operation (deploy several replicas of these, create a service for
-them then curl the service sequentially to see various hosts engaged).
+Simple Go microservice which returns a host info string (name and IP of the host). Accessible via curl, wget, etc. 
+Listens on port 9898 by default, if an `int` is passed on the command line, that port is used instead. Particularly 
+useful when demonstrating K8s service routing operation (deploy several replicas of this, create a service for the 
+set, then curl the service sequentially to see various hosts respond). The hostinfo service logs inbound requests
+and the client IP to stdout.
+
+- `/python` contains a Python version of the service
+- `/otel` contains a Go version of the service that logs in Open Telemetry format
 
 
 ## Server Examples
