@@ -1,4 +1,4 @@
-FROM docker.io/alpine:3.20.3
+FROM docker.io/alpine:3.21.3
 RUN apk add --update --no-cache python3 openssl
 WORKDIR /usr/src/hostinfo
 COPY ./__main__.py .
